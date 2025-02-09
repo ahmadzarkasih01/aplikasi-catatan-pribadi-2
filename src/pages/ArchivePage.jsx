@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import NoteList from '../components/NoteList';
-import { getActiveNotes } from '../utils/local-data';
-import HomepageAction from '../components/HomepageAction';
+import { getArchivedNotes } from '../utils/local-data';
 import SearchBar from '../components/SearchBar';
 
-function HomePage() {
+function ArchivePage() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [notes] = useState(getActiveNotes());
+  const [notes] = useState(getArchivedNotes());
   const keyword = searchParams.get('keyword') || '';
 
   useEffect(() => {
@@ -19,7 +18,7 @@ function HomePage() {
   }, [keyword, setSearchParams]);
 
   function onKeywordChangeHandler(keyword) {
-    setSearchParams(keyword ? { keyword } : {});
+    setSearchParams({ keyword });
   }
 
   const filteredNotes = notes.filter((note) =>
@@ -27,13 +26,12 @@ function HomePage() {
   );
 
   return (
-    <section className="homepage">
-      <h2>Catatan Aktif</h2>
+    <section className="archive-page">
+      <h2>Catatan Arsip</h2>
       <SearchBar keyword={keyword} keywordChange={onKeywordChangeHandler} />
       <NoteList notes={filteredNotes} />
-      <HomepageAction />
     </section>
   );
 }
 
-export default HomePage;
+export default ArchivePage;

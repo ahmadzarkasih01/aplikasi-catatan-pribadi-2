@@ -1,12 +1,12 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-function HomepageAction({}) {
+function HomepageAction() {
 
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate("/notes/new");
+    navigate('/notes/new');
   };
 
   return (

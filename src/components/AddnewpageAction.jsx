@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react';
+import PropTypes from 'prop-types';
 
 class AddnewpageAction extends React.Component {
   constructor(props) {
@@ -38,5 +39,9 @@ class AddnewpageAction extends React.Component {
     );
   }
 }
+
+AddnewpageAction.propTypes = {
+  addNote: PropTypes.func.isRequired
+};
 
 export default AddnewpageAction;

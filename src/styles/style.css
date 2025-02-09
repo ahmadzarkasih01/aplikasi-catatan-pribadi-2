@@ -111,7 +111,7 @@ main {
 
 .detail-page {
   margin: 0 auto;
-  margin-top: 32px; 
+  margin-top: 32px;
   width: 90%;
 }
 
@@ -269,12 +269,41 @@ main {
   color: var(--on-background);
 }
 
+.not-found-page {
+  text-align: center;
+  padding: 50px;
+}
+
+.not-found-page h2 {
+  font-size: 2rem;
+  color: #ff4a4a;
+}
+
+.not-found-page p {
+  font-size: 1.2rem;
+}
+
+.not-found-page .home-link {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.not-found-page .home-link:hover {
+  background-color: #0056b3;
+}
+
+
 @media screen and (min-width: 650px) {
   .notes-list {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .detail-page__title { 
+  .detail-page__title {
     font-size: 64px;
   }
 }

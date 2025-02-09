@@ -1,15 +1,15 @@
-import React from "react";
-import AddnewpageInputTitle from "./AddnewpageInputTitle";
-import AddnewpageInputBody from "./AddnewpageInputBody";
+import React from 'react';
+import AddnewpageInputTitle from './AddnewpageInputTitle';
+import AddnewpageInputBody from './AddnewpageInputBody';
+import PropTypes from 'prop-types';
 
 class AddnewpageInput extends React.Component {
   constructor(props) {
     super(props);
 
-    // inisialisasi state
     this.state = {
-      title: "",
-      body: "",
+      title: '',
+      body: ''
     };
 
     this.onTitleChangeEventHandler = this.onTitleChangeEventHandler.bind(this);
@@ -23,8 +23,7 @@ class AddnewpageInput extends React.Component {
     });
   }
 
-  onBodyChangeEventHandler(event) {
-    const newBody = event.target.innerText; // Gunakan innerText, bukan innerHTML
+  onBodyChangeEventHandler(newBody) {
     this.setState({ body: newBody }, () => {
       this.props.onNoteChange(this.state);
     });
@@ -38,12 +37,16 @@ class AddnewpageInput extends React.Component {
           onChange={this.onTitleChangeEventHandler}
         />
         <AddnewpageInputBody
-          value={this.state.body}
+          body={this.state.body}
           onChange={this.onBodyChangeEventHandler}
         />
       </div>
     );
   }
 }
+
+AddnewpageInput.propTypes = {
+  onNoteChange: PropTypes.func.isRequired
+};
 
 export default AddnewpageInput;

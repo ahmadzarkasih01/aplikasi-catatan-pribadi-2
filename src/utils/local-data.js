@@ -4,43 +4,43 @@ let notes = [
     title: 'Babel',
     body: 'Babel merupakan tools open-source yang digunakan untuk mengubah sintaks ECMAScript 2015+ menjadi sintaks yang didukung oleh JavaScript engine versi lama. Babel sering dipakai ketika kita menggunakan sintaks terbaru termasuk sintaks JSX.',
     createdAt: '2022-04-14T04:27:34.572Z',
-    archived: false,
+    archived: false
   },
   {
     id: 'notes-2',
     title: 'Functional Component',
     body: 'Functional component merupakan React component yang dibuat menggunakan fungsi JavaScript. Agar fungsi JavaScript dapat disebut component ia harus mengembalikan React element dan dipanggil layaknya React component.',
     createdAt: '2022-04-14T04:27:34.572Z',
-    archived: false,
+    archived: false
   },
   {
     id: 'notes-3',
     title: 'Modularization',
     body: 'Dalam konteks pemrograman JavaScript, modularization merupakan teknik dalam memecah atau menggunakan kode dalam berkas JavaScript secara terpisah berdasarkan tanggung jawabnya masing-masing.',
     createdAt: '2022-04-14T04:27:34.572Z',
-    archived: false,
+    archived: false
   },
   {
     id: 'notes-4',
     title: 'Lifecycle',
     body: 'Dalam konteks React component, lifecycle merupakan kumpulan method yang menjadi siklus hidup mulai dari component dibuat (constructor), dicetak (render), pasca-cetak (componentDidMount), dan sebagainya. ',
     createdAt: '2022-04-14T04:27:34.572Z',
-    archived: false,
+    archived: false
   },
   {
     id: 'notes-5',
     title: 'ESM',
     body: 'ESM (ECMAScript Module) merupakan format modularisasi standar JavaScript.',
     createdAt: '2022-04-14T04:27:34.572Z',
-    archived: false,
+    archived: false
   },
   {
     id: 'notes-6',
     title: 'Module Bundler',
     body: 'Dalam konteks pemrograman JavaScript, module bundler merupakan tools yang digunakan untuk menggabungkan seluruh modul JavaScript yang digunakan oleh aplikasi menjadi satu berkas.',
     createdAt: '2022-04-14T04:27:34.572Z',
-    archived: false,
-  },
+    archived: false
+  }
 ];
 
 function getAllNotes() {
@@ -63,9 +63,16 @@ function getArchivedNotes() {
 }
 
 function addNote({ title, body }) {
-  notes = [...notes, {
-    id: `notes-${+new Date()}`, title: title || '(untitled)', body, createdAt: new Date().toISOString(), archived: false,
-  }];
+  notes = [
+    ...notes,
+    {
+      id: `notes-${+new Date()}`,
+      title: title || '(untitled)',
+      body,
+      createdAt: new Date().toISOString(),
+      archived: false
+    }
+  ];
 }
 
 function deleteNote(id) {
@@ -104,14 +111,23 @@ function editNote({ id, title, body }) {
   });
 }
 
-export {
-  getAllNotes,
-  getActiveNotes,
-  getArchivedNotes,
-  deleteNote,
-  editNote,
-  getNote,
-  archiveNote,
-  unarchiveNote,
-  addNote,
-};
+function updateNote(updatedNote) {
+  const noteIndex = notes.findIndex((note) => note.id === updatedNote.id);
+  if (noteIndex !== -1) {
+    notes[noteIndex] = updatedNote;
+    localStorage.setItem('notes', JSON.stringify(notes)); // Simpan ke localStorage jika diperlukan
+  }
+}
+
+function formatDate(dateString) {
+  const date = new Date(dateString);
+  return new Intl.DateTimeFormat('id-ID', {
+    weekday: 'long',
+    day: '2-digit',
+    month: 'long',
+    year: 'numeric'
+  }).format(date);
+}
+
+
+export { getAllNotes, getActiveNotes, getArchivedNotes, deleteNote, editNote, getNote, archiveNote, unarchiveNote, addNote, updateNote, formatDate };

@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react';
+import PropTypes from 'prop-types';
 
 function AddnewpageInputTitle({ value, onChange }) {
   return (
@@ -11,5 +12,10 @@ function AddnewpageInputTitle({ value, onChange }) {
     />
   );
 }
+
+AddnewpageInputTitle.propTypes = {
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired
+};
 
 export default AddnewpageInputTitle;
